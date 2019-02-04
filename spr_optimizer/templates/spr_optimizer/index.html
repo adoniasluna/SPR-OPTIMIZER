@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SPR Curve optmizer</title>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>
+        <a href="index.html">SPR <br>Optimizer</a>
+    </h1>
+</header>
+
+<!-- Teasers -->
+<section class="menu-bar">
+    <a>
+        <form enctype="multipart/form-data" method="post" action="/spr_optimizer/uploading/">
+            {% csrf_token %}
+            <input type="file" name="img" multiple>
+            <button type="submit">Upload</button>
+        </form>
+    </a>
+    <a href="setting">Settings</a>
+    <a href="help">Help</a>
+</section>
+
+<!-- Footer -->
+
+<footer>
+    <small>Adonias Luna<br>alps@ecomp.poli.br</small>
+</footer>
+
+</body>
+</html>
