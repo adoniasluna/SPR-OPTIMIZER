@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Uploading files</title>
-</head>
-<body>
+{% extends 'spr_optimizer/base.html' %}
+{% load static %}
+
+{% block content %}
 
 <ul>
     {% for file in files %}
         <li><a>{{ file }}</a></li>
     {% endfor %}
 </ul>
-
-<a href="optimize">Optimize</a>
-<div></div>
-
-
-</body>
-
-</html>
+{% endblock content %}

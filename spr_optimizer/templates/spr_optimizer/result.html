@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'spr_optimizer/base.html' %}
+{% load static %}
+
+{% block content %}
 <ul>
     {% for result in results %}
         <li><a>{{ result }}</a></li>
     {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock content %}

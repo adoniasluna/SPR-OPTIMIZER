@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'spr_optimizer/base.html' %}
+{% load static %}
+
+{% block content %}
 <p1>Settings</p1>
 <select name="Layers amount">
     <option value="1" selected>1</option>
@@ -13,7 +10,4 @@
     <option value="4">4</option>
 
 </select>
-
-
-</body>
-</html>
+{% endblock content %}

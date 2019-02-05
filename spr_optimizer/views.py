@@ -1,12 +1,14 @@
 from django.template import loader
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse
 from facade import facade
+
 
 
 def index(request):
     template = loader.get_template('spr_optimizer/index.html')
-    context = {
-    }
+    context = {}
+
     return HttpResponse(template.render(context, request))
 
 
