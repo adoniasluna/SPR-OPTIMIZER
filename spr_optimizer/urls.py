@@ -8,5 +8,5 @@ urlpatterns = [
     path('uploading/', views.upload, name='uploading'),
     path('setting/', views.setting, name='setting'),
     path('help/', views.get_help, name='help'),
-    path('uploading/optimize/', views.optimize, name='optimize')
+    path('optimize/', views.optimize, name='optimize')
 ]

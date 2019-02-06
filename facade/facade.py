@@ -6,8 +6,8 @@ def upload_files(file_path, file_name):
     store_files.upload_files(file_path, file_name)
 
 
-def optimize():
-    return optimizer.controller_optimize()
+def optimize(files):
+    return optimizer.controller_optimize(files)
 
 
 def configure_pso():

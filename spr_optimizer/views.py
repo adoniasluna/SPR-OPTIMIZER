@@ -1,3 +1,5 @@
+import hashlib
+from datetime import datetime
 from django.template import loader
 from django.shortcuts import render, redirect
 from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse
@@ -15,11 +17,12 @@ def index(request):
 def upload(request):
     template = loader.get_template('spr_optimizer/upload.html')
     file_list = []
+    date = datetime.now()
 
-    for count, x in enumerate(request.FILES.getlist("img")):
-        print(count, x)
-        facade.upload_files("media/" + str(count), x)
-        file_list.append(count)
+    for count, x in enumerate(request.FILES.getlist("file_opt")):
+        file_name = hashlib.sha224(str(date).encode('utf-8')).hexdigest()
+        facade.upload_files("media/" + str(file_name) + ".txt", x)
+        file_list.append(file_name +'-'+  str(x))
 
     #the context has all the files names so it could be show at the index page
     context = {"files": file_list}
@@ -29,7 +32,11 @@ def upload(request):
 
 def optimize(request):
     template = loader.get_template('spr_optimizer/result.html')
-    best_position = facade.optimize()
+    files = []
+    for key, value in request.POST.items():
+        if key == 'file_uploads':
+            files.append(value.split("-")[0]+'.txt')
+    best_position = facade.optimize(files)
 
     context = {"results": best_position}
     print(best_position)

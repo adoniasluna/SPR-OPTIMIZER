@@ -2,11 +2,18 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <form enctype="multipart/form-data" method="post" action="/spr_optimizer/uploading/">
-            {% csrf_token %}
-            <input type="file" name="img" multiple>
-            <button type="submit">Upload</button>
+<div class="container">
+    <h3>Choose your file</h3>
+    <div class="form-group">
+        <form class="input-append" enctype="multipart/form-data" method="post" action="/spr_optimizer/uploading/">
+            <div id="field">
+                {% csrf_token %}
+                <input class="input" id="file_opt" name="file_opt" type="file" required/>
+            </div>
+
+            <button type="submit" class="btn btn-primary margin-top">Upload</button>
+
         </form>
     </div>
+</div>
 {% endblock content %}

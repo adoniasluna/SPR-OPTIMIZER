@@ -5,47 +5,49 @@
     <meta charset="utf-8">
     <title>{% block title %} SPR Curve optmizer {% endblock title %}</title>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
     <link href="{% static 'js/bootstrap.js' %}" rel="stylesheet">
+
+
+    <link href="{% static 'js/custom.js' %}" rel="stylesheet">
 </head>
 <body>
 
 <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a href="/spr_optimizer/">SPR Optimizer</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="setting">Settings</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="help">Help</a>
-          </li>
-        </ul>
-      </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="setting">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="help">Help</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- Page Content -->
-  <div class="container">
-      <div class="row">
-      <div class="col-lg-12 text-center">
-
-  {% block content %}
-  {% endblock content %}
-      </div>
-      </div>
-  <!-- Footer -->
-<footer>
+<!-- Page Content -->
+<div class="container" style="margin-top:2%">
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <!-- Footer -->
+    <footer>
         <small>Adonias Luna<br>alps@ecomp.poli.br</small>
     </footer>
 
-  </div>
+</div>
 
-
-
+<script src="{% static 'jquery/jquery.min.js' %}"></script>
+<script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

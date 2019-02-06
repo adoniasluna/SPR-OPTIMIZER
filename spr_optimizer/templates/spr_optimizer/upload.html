@@ -3,11 +3,20 @@
 
 {% block content %}
 
-<ul>
-    {% for file in files %}
-        <li><a>{{ file }}</a></li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <h3>Files</h3>
+    <div class="row">
 
-<a class="btn btn-primary" href="optimize" role="button">Optimize</a>
+        <form enctype="multipart/form-data" method="post" action="/spr_optimizer/optimize/">
+            <ul class="list-group">
+            {% for file in files %}
+            <li class="list-group-item"> {{ file }}</li>
+            {% csrf_token %}
+            <input type="hidden" name="file_uploads" id="file_uploads" value="{{ file }}"/>
+            {% endfor %}
+            </ul>
+            <button class="btn btn-primary margin-top" type="submit">Optimize</button>
+        </form>
+    </div>
+</div>
 {% endblock content %}
