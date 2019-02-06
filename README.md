@@ -37,21 +37,6 @@ $ python manage.py migrate
 ```
 
 
-## Run the application
-
-Create super user:
-- Execute the manage createsuperuser
-````bash
-$ python manage.py createsuperuser
-````
-
-- Set these information to create the default user:
-
-````bash
-$ Username: user
-$ Password: useradmin
-````
-
 Execute this command to run the application:
 - python manage.py runserver 127.0.0.1:8080
 

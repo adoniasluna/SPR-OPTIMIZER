@@ -18,7 +18,7 @@ def Exec1(path):
 
 def controller_optimize():
     # Get the list with all the prn files
-    dir_path = "/home/adonias/PycharmProjects/mysite/media"
+    dir_path = "media/"
     prn_files = os.listdir(dir_path)
 
     # Defining the parameters o the simulation

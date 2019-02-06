@@ -18,7 +18,7 @@ def upload(request):
 
     for count, x in enumerate(request.FILES.getlist("img")):
         print(count, x)
-        facade.upload_files("/home/adonias/PycharmProjects/mysite/media/" + str(count), x)
+        facade.upload_files("media/" + str(count), x)
         file_list.append(count)
 
     #the context has all the files names so it could be show at the index page
