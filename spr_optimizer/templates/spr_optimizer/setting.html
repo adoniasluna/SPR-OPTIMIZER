@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-<p1>Settings</p1>
-<select name="Layers amount">
-    <option value="1" selected>1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-
-</select>
+    <p1>PSO Settings</p1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
 {% endblock content %}

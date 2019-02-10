@@ -2,8 +2,9 @@ import hashlib
 from datetime import datetime
 from django.template import loader
 from django.shortcuts import render, redirect
-from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse
+from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse, HttpResponseRedirect
 from facade import facade
+from spr_optimizer.forms import PSOSettingForm
 
 
 def index(request):
@@ -45,8 +46,33 @@ def optimize(request):
 
 def setting(request):
     template = loader.get_template('spr_optimizer/setting.html')
-    context = {
-    }
+
+    # If this is a POST request then process the Form data
+    print(request.method)
+    if request.method == 'POST':
+        form = PSOSettingForm(request.POST)
+
+        if form.is_valid():
+            print(form.cleaned_data)
+
+            # Set up PSO parameter for the session
+            for key in form.cleaned_data:
+                request.session[key] = form.cleaned_data[key]
+
+            return HttpResponseRedirect("/spr_optimizer/")
+
+        # Reload the form with the previous value
+        else:
+            context = {'form': form}
+            return HttpResponse(template.render(context, request))
+
+    # If this is a GET (or any other method) load the form with default values
+    else:
+        form = PSOSettingForm()
+        context = {
+            'form': form,
+        }
+
     return HttpResponse(template.render(context, request))
 
 
