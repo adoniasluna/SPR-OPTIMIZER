@@ -20,7 +20,7 @@ def upload(request):
     date = datetime.now()
 
     for count, x in enumerate(request.FILES.getlist("file_opt")):
-        file_name = hashlib.sha224(str(date).encode('utf-8')).hexdigest()
+        file_name = hashlib.sha224(str(date).encode('utf-8')).hexdigest() + str(count)
         facade.upload_files("media/" + str(file_name) + ".txt", x)
         file_list.append(file_name +'-'+  str(x))
 
@@ -31,6 +31,13 @@ def upload(request):
 
 
 def optimize(request):
+    files = request.POST.getlist('file_uploads')
+
+    # It separates the file name used in this application from the uploaded one
+    files_system_name = [elem.split("-")[0] + '.txt' for elem in files]
+
+    best_position = facade.optimize(files_system_name)
+
     template = loader.get_template('spr_optimizer/result.html')
     files = []
     for key, value in request.POST.items():

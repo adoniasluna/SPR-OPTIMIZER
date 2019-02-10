@@ -8,7 +8,7 @@
         <form class="input-append" enctype="multipart/form-data" method="post" action="/spr_optimizer/uploading/">
             <div id="field">
                 {% csrf_token %}
-                <input class="input" id="file_opt" name="file_opt" type="file" required/>
+                <input class="input" id="file_opt" name="file_opt" type="file" required multiple/>
             </div>
 
             <button type="submit" class="btn btn-primary margin-top">Upload</button>
