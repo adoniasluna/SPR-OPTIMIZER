@@ -4,24 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class PSOSettingForm(forms.Form):
-    particle_number = forms.IntegerField(initial=500)
-    iteration_number = forms.IntegerField(initial=10)
-    inertia_weight = forms.FloatField(initial=2)
-    group_nostalgia = forms.FloatField(initial=500)
-    individual_nostalgia = forms.IntegerField(initial=500)
+    particle_number = forms.IntegerField(initial=500, min_value=20, max_value=500)
+    iteration_number = forms.IntegerField(initial=10, max_value=100)
+    inertia_weight = forms.FloatField(initial=0.5, min_value=0)
+    cognitive_constant = forms.FloatField(initial=2.04, min_value=0)
+    social_constant = forms.FloatField(initial=2.04, min_value=0)
     initial_position = forms.CharField(initial="random")
-
-    def clean_particle_number(self):
-        data = self.cleaned_data['particle_number']
-
-        if data <= 0 or data > 1000:
-            raise ValidationError(_('Invalid number of particles'))
-
-        return data
-
-    def clean_iteration_number(self):
-        data = self.cleaned_data['iteration_number']
-
-        if data <= 0 or data > 100:
-            raise ValidationError(_('Invalid number iterations'))
-        return data
