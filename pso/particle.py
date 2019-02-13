@@ -2,8 +2,11 @@ import random
 
 
 class Particle:
-    def __init__(self, dimensions):
+    def __init__(self, dimensions, inertia_weight, cognitive_constant, social_constant):
         self.dimensions = dimensions
+        self.inertia_wight = inertia_weight
+        self.cognitive_constant = cognitive_constant
+        self.social_constant = social_constant
         self.position = []  # particle position
         self.velocity = []  # particle velocity
         self.pos_best = []  # best position individual
@@ -31,9 +34,9 @@ class Particle:
 
     # update new particle velocity - inertia192.168.99.100
     def update_velocity_intertia(self, pos_best_g):
-        w = 0.5  # constant inertia weight (how much to weigh the previous velocity)
-        c1 = 2.04  # cognative constant
-        c2 = 2.04  # social constant
+        w = self.inertia_wight  # constant inertia weight (how much to weigh the previous velocity)
+        c1 = self.cognitive_constant  # cognative constant
+        c2 = self.social_constant  # social constant
 
         for i in range(0, num_dimensions):
             r1 = random.random()
@@ -53,7 +56,7 @@ class Particle:
 
             vel = c_fac * (
                     (self.velocity[i] + r1) * (self.pos_best[i] - self.position[i]) + (
-                        r2 * (pos_best_g[i] - self.position[i])))
+                    r2 * (pos_best_g[i] - self.position[i])))
             self.velocity[i] = vel
 
     # update the particle position based off new velocity updates

@@ -37,7 +37,14 @@ def optimize(request):
     # It separates the file name used in this application from the uploaded one
     files_system_name = [elem.split("-")[0] + '.txt' for elem in files]
 
-    best_position = facade.optimize(files_system_name)
+    num_particles = request.session['particle_number']
+    max_iterations = request.session['iteration_number']
+    inertia_weight = request.session['inertia_weight']
+    cognitive_constant = request.session['cognitive_constant']
+    social_constant = request.session['social_constant']
+
+    best_position = facade.optimize(files_system_name, num_particles, max_iterations, inertia_weight,
+                                    cognitive_constant, social_constant)
     context = {"results": best_position}
 
     template = loader.get_template('spr_optimizer/result.html')

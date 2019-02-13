@@ -16,36 +16,35 @@ def Exec1(path):
     return Error
 
 
-def controller_optimize(files):
+def controller_optimize(files, num_particles, max_iterations, inertia_weight, cognitive_constant, social_constant):
     # Get the list with all the prn files
     dir_path = "media/"
     onlyfiles = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
-    #prn_files = listdir(dir_path)
+    # prn_files = listdir(dir_path)
 
     # Defining the parameters o the simulation
     dimensions = [(-60.261, -21), (-9.4685, 1.95), (500, 2500)]
-    num_particles = 50
-    max_iterations = 10
 
     best_positions = []
     # Loop through all the files on the directory and run the PSO
     for fls in files:
         if fls in onlyfiles:
             file_path = dir_path + "/" + fls
-            p = PSO(Exec1(file_path).get_error, dimensions, num_particles, max_iterations)
+            p = PSO(Exec1(file_path).get_error, dimensions, num_particles, max_iterations, inertia_weight,
+                    cognitive_constant, social_constant)
             best_positions.append(str(p.best_position))
     return best_positions
 
     # Defining the parameters o the simulation
-    #dimensions = [(-60.261, -21), (-9.4685, 1.95), (500, 2500)]
-    #num_particles = 50
-    #max_iterations = 10
+    # dimensions = [(-60.261, -21), (-9.4685, 1.95), (500, 2500)]
+    # num_particles = 50
+    # max_iterations = 10
 
-    #best_positions = []
+    # best_positions = []
     # Loop through all the files on the directory and run the PSO
-    #for file_name in prn_files:
+    # for file_name in prn_files:
     #    file_path = dir_path + "/" + file_name
     #    p = PSO(Exec1(file_path).get_error, dimensions, num_particles, max_iterations)
     #    best_positions.append(p.best_position)
 
-    #return best_positions
+    # return best_positions
