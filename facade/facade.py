@@ -6,9 +6,10 @@ def upload_files(file_path, file_name):
     store_files.upload_files(file_path, file_name)
 
 
-def optimize(files, num_particles, max_iterations, inertia_weight, cognitive_constant, social_constant):
+def optimize(files, num_particles, max_iterations, inertia_weight, cognitive_constant, social_constant,
+             initial_position):
     return optimizer.controller_optimize(files, num_particles, max_iterations, inertia_weight, cognitive_constant,
-                                         social_constant)
+                                         social_constant, initial_position)
 
 
 def configure_pso():

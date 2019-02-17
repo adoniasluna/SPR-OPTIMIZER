@@ -5,7 +5,7 @@ from pso.particle import Particle
 
 class PSO:
     def __init__(self, func_fitness, dimensions, num_particles, max_iterations, inertia_weight, cognitive_constant,
-                 social_constant):
+                 social_constant, initial_position=None):
         self.convergence_time = -1
         self.best_position = []
         self.best_error = -1

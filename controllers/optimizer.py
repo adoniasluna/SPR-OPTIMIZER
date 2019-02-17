@@ -16,7 +16,8 @@ def Exec1(path):
     return Error
 
 
-def controller_optimize(files, num_particles, max_iterations, inertia_weight, cognitive_constant, social_constant):
+def controller_optimize(files, num_particles, max_iterations, inertia_weight, cognitive_constant, social_constant,
+                        initial_position):
     # Get the list with all the prn files
     dir_path = "media/"
     onlyfiles = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
@@ -30,8 +31,13 @@ def controller_optimize(files, num_particles, max_iterations, inertia_weight, co
     for fls in files:
         if fls in onlyfiles:
             file_path = dir_path + "/" + fls
-            p = PSO(Exec1(file_path).get_error, dimensions, num_particles, max_iterations, inertia_weight,
-                    cognitive_constant, social_constant)
+            if initial_position is "RANDOM":
+                p = PSO(Exec1(file_path).get_error, dimensions, num_particles, max_iterations, inertia_weight,
+                        cognitive_constant, social_constant)
+            else:
+                # Function that calculates specific position to the particles
+                pass
+
             best_positions.append(str(p.best_position))
     return best_positions
 
