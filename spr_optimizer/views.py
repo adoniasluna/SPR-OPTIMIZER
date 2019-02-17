@@ -42,9 +42,10 @@ def optimize(request):
     inertia_weight = request.session['inertia_weight']
     cognitive_constant = request.session['cognitive_constant']
     social_constant = request.session['social_constant']
+    initial_position = request.session['initial_position']
 
     best_position = facade.optimize(files_system_name, num_particles, max_iterations, inertia_weight,
-                                    cognitive_constant, social_constant)
+                                    cognitive_constant, social_constant, initial_position)
     context = {"results": best_position}
 
     template = loader.get_template('spr_optimizer/result.html')
