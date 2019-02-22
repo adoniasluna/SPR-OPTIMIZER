@@ -31,14 +31,14 @@ def controller_optimize(files, num_particles, max_iterations, inertia_weight, co
     for fls in files:
         if fls in onlyfiles:
             file_path = dir_path + "/" + fls
-            if initial_position is "RANDOM":
+            if initial_position == "RANDOM":
                 p = PSO(Exec1(file_path).get_error, dimensions, num_particles, max_iterations, inertia_weight,
                         cognitive_constant, social_constant)
+                best_positions.append(str(p.best_position))
             else:
                 # Function that calculates specific position to the particles
                 pass
 
-            best_positions.append(str(p.best_position))
     return best_positions
 
     # Defining the parameters o the simulation
