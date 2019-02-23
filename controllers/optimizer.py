@@ -36,7 +36,7 @@ def controller_optimize(files, num_particles, max_iterations, inertia_weight, co
             if initial_position == "RANDOM":
                 p = PSO(exec1(file_path).get_error, dimensions, num_particles, max_iterations, inertia_weight,
                         cognitive_constant, social_constant)
-                best_positions.append(str(p.best_position))
+                best_positions.append((p.best_position, p.best_error))
             else:
                 # Function that calculates specific position to the particles
                 pass

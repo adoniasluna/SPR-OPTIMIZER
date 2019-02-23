@@ -44,9 +44,20 @@ def optimize(request):
     social_constant = request.session['social_constant']
     initial_position = request.session['initial_position']
 
-    best_position = facade.optimize(files_system_name, num_particles, max_iterations, inertia_weight,
+    opt_result = facade.optimize(files_system_name, num_particles, max_iterations, inertia_weight,
                                     cognitive_constant, social_constant, initial_position)
-    context = {"results": best_position}
+
+    # Getting the name of the file
+    files_uploaded_name = [elem.split("-")[1].split(".")[0] for elem in files]
+
+    # Combining the error, best position and cell name to be put on the context
+    result_contex = []
+    for i in range(len(files_uploaded_name)):
+        best_position, error = opt_result[i]
+        context_elem = (files_uploaded_name[i], best_position, error)
+        result_contex.append(context_elem)
+
+    context = {"results": result_contex}
 
     template = loader.get_template('spr_optimizer/result.html')
     return HttpResponse(template.render(context, request))
